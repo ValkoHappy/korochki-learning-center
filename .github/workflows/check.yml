@@ -1,5 +1,11 @@
 name: Check PHP application
-on: [push, pull_request]
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+permissions:
+  contents: read
 jobs:
   checks:
     runs-on: ubuntu-latest
@@ -37,3 +43,39 @@ jobs:
       - run: php bin/setup.php && php bin/create-admin.php
       - run: php -S 127.0.0.1:8080 -t public > /tmp/php-server.log 2>&1 &
       - run: python3 tests/http_smoke.py http://127.0.0.1:8080
+
+  build-pages:
+    needs: checks
+    if: github.event_name != 'pull_request'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: shivammathur/setup-php@v2
+        with:
+          php-version: '8.3'
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+      - run: find demo bin -name '*.php' -print0 | xargs -0 -n1 php -l
+      - run: find demo/browser -name '*.mjs' -print0 | xargs -0 -n1 node --check
+      - run: node tests/demo-store.mjs
+      - run: php bin/build-demo.php
+      - run: python3 tests/check-demo.py
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: .pages
+  deploy-pages:
+    needs: build-pages
+    runs-on: ubuntu-latest
+    permissions:
+      pages: write
+      id-token: write
+    concurrency:
+      group: pages
+      cancel-in-progress: false
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - uses: actions/deploy-pages@v4
+        id: deployment

@@ -1,0 +1,24 @@
+import assert from 'node:assert/strict';
+import { DemoStore } from '../demo/browser/store.mjs';
+
+const memory = new Map();
+const storage = { getItem: key => memory.get(key) ?? null, setItem: (key, value) => memory.set(key, value) };
+const store = new DemoStore('first', storage);
+assert.deepEqual(store.list(), []);
+store.saveProfile({ name: 'Учебный пользователь', email: 'test@example.test', password: 'must-not-be-stored' });
+store.create({ description: '<img src=x onerror=alert(1)>', password: 'must-not-be-stored', id: 1000, status: 'confirmed' }, 'new');
+assert.equal(store.list()[0].id, 1);
+assert.equal(store.list()[0].status, 'new');
+assert.equal(store.list()[0].description, '<img src=x onerror=alert(1)>');
+assert.ok(!memory.get('first').includes('must-not-be-stored'));
+assert.equal(new DemoStore('first', storage).list().length, 1);
+assert.equal(new DemoStore('second', storage).list().length, 0);
+store.create({ description: 'second' }, 'new');
+store.update(1, 'confirmed');
+assert.equal(store.list().find(row => row.id === 1).status, 'confirmed');
+store.remove(1);
+assert.equal(store.list().length, 1);
+assert.throws(() => store.update(999, 'confirmed'));
+storage.setItem('bad', '{');
+assert.deepEqual(new DemoStore('bad', storage).list(), []);
+console.log('Demo persistence, isolation, updates and password exclusion passed');

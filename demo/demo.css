@@ -1,0 +1,10 @@
+.demo-note { font-size: 14px; line-height: 1.5; color: #5b6470; margin: 0 0 20px; }
+.demo-actions { display: flex; flex-direction: column; gap: 12px; margin-top: 20px; }
+.demo-links { display: flex; flex-wrap: wrap; gap: 10px 20px; margin-bottom: 24px; }
+.demo-links a { font-size: 14px; }
+body[data-demo-page="cabinet"] table, body[data-demo-page="admin"] table { visibility: hidden; }
+@media (max-width: 600px) {
+    .d-flex.justify-content-between { flex-wrap: wrap; gap: 16px; }
+    .card-body.p-5 { padding: 24px !important; }
+    .btn { white-space: normal; }
+}
