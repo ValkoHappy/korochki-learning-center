@@ -1,0 +1,532 @@
+.app-card {
+    background: white;
+    border-radius: 20px;
+    padding: 25px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+    transition: transform 0.2s;
+    border: 1px solid #eee;
+    position: relative;
+}
+
+.app-card:hover {
+    transform: translateY(-3px);
+}
+
+.status-badge {
+    display: inline-block;
+    padding: 5px 12px;
+    border-radius: 50px;
+    font-size: 0.85rem;
+    font-weight: 600;
+}
+
+.status-new {
+    background: #e3f2fd;
+    color: #1565c0;
+}
+
+.status-progress {
+    background: #fff3e0;
+    color: #ef6c00;
+}
+
+.status-done {
+    background: #e8f5e9;
+    color: #2e7d32;
+}
+
+.search-container {
+    position: relative;
+    max-width: 100%;
+    margin: 0 auto 40px;
+}
+
+.search-container input {
+    width: 100%;
+    padding: 15px 20px 15px 50px;
+    border-radius: 12px;
+    border: 2px solid #eee;
+    font-size: 1rem;
+    outline: none;
+    transition: border-color 0.3s;
+}
+
+.search-container input:focus {
+    border-color: var(--primary-color);
+}
+
+.search-icon {
+    position: absolute;
+    left: 15px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 20px;
+    height: 20px;
+    opacity: 0.5;
+    background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Ccircle cx='11' cy='11' r='8'%3E%3C/circle%3E%3Cline x1='21' y1='21' x2='16.65' y2='16.65'%3E%3C/line%3E%3C/svg%3E") no-repeat center/contain;
+}
+
+.delete-icon {
+    width: 20px;
+    height: 20px;
+    cursor: pointer;
+    opacity: 0.6;
+    transition: opacity 0.2s;
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23ff4444' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cline x1='18' y1='6' x2='6' y2='18'%3E%3C/line%3E%3Cline x1='6' y1='6' x2='18' y2='18'%3E%3C/line%3E%3C/svg%3E") no-repeat center/contain;
+}
+
+.delete-icon:hover {
+    opacity: 1;
+}
+
+.tab-content {
+    width: 100%;
+}
+
+.status-filters {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 30px;
+    flex-wrap: wrap;
+}
+
+.filter-btn {
+    padding: 8px 16px;
+    border-radius: 50px;
+    border: 1px solid #ddd;
+    background: white;
+    cursor: pointer;
+    font-size: 0.9rem;
+}
+
+.filter-btn.active {
+    background: var(--primary-color);
+    color: white;
+    border-color: var(--primary-color);
+}
+
+.applications-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+    width: 100%;
+    min-width: 100%;
+}
+
+.dashboard-main {
+    padding-top: 40px;
+    padding-bottom: 60px;
+    min-height: calc(100vh - 200px);
+}
+
+.dashboard-header {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.dashboard-title {
+    font-size: 2rem;
+    margin-bottom: 10px;
+}
+
+.dashboard-welcome {
+    color: #666;
+}
+
+.create-form-card {
+    max-width: 500px;
+    margin: 0 auto;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+    border: none;
+}
+
+.form-label {
+    font-size: 0.9rem;
+    margin-bottom: 5px;
+    display: block;
+    color: #555;
+}
+
+.form-select,
+.form-input {
+    width: 100%;
+    padding: 12px;
+    border-radius: 8px;
+    border: 1px solid #ddd;
+}
+
+.admin-controls {
+    margin-top: 20px;
+    padding-top: 15px;
+    border-top: 1px solid #f0f0f0;
+}
+
+.admin-label {
+    font-size: 0.75rem;
+    color: #999;
+    margin-bottom: 5px;
+    display: block;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.admin-select {
+    width: 100%;
+    padding: 8px;
+    border-radius: 6px;
+    border: 1px solid #ddd;
+    background: #f9f9f9;
+}
+
+.review-modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 9999;
+    align-items: center;
+    justify-content: center;
+}
+
+.review-modal-content {
+    background: white;
+    padding: 30px;
+    border-radius: 20px;
+    max-width: 400px;
+    width: 90%;
+    margin: auto;
+}
+
+.review-course-input {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #eee;
+    border-radius: 8px;
+    background: #f9f9f9;
+    font-weight: bold;
+    color: #333;
+}
+
+.review-textarea {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    resize: none;
+}
+
+.review-select {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+}
+
+.logo-img {
+    height: 50px;
+}
+
+.nav-link-primary {
+    color: var(--primary-color);
+}
+
+.dashboard-main {
+    padding-top: 40px;
+    padding-bottom: 60px;
+    min-height: calc(100vh - 200px);
+}
+
+.dashboard-header {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.dashboard-title {
+    font-size: 2rem;
+    margin-bottom: 10px;
+}
+
+.dashboard-welcome {
+    color: #666;
+}
+
+.tab-content {
+    width: 100%;
+}
+
+.tab-content-hidden {
+    display: none;
+}
+
+.applications-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+    width: 100%;
+    min-width: 100%;
+}
+
+.loading-text {
+    width: 100%;
+    color: #888;
+}
+
+.create-form-card {
+    max-width: 500px;
+    margin: 0 auto;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+    border: none;
+}
+
+.form-label {
+    font-size: 0.9rem;
+    margin-bottom: 5px;
+    display: block;
+    color: #555;
+}
+
+.form-select,
+.form-input {
+    width: 100%;
+    padding: 12px;
+    border-radius: 8px;
+    border: 1px solid #ddd;
+}
+
+.error-msg {
+    margin-bottom: 15px;
+}
+
+.btn-submit {
+    background: var(--primary-color);
+    border-radius: 8px;
+    padding: 14px;
+}
+
+.btn-cancel {
+    background: transparent;
+    color: #666;
+    border: none;
+}
+
+.review-modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 9999;
+    align-items: center;
+    justify-content: center;
+}
+
+.review-modal-content {
+    background: white;
+    padding: 30px;
+    border-radius: 20px;
+    max-width: 400px;
+    width: 90%;
+    margin: auto;
+}
+
+.review-modal-title {
+    margin-bottom: 10px;
+}
+
+.review-form-group {
+    margin-bottom: 20px;
+}
+
+.review-course-input {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #eee;
+    border-radius: 8px;
+    background: #f9f9f9;
+    font-weight: bold;
+    color: #333;
+}
+
+.review-textarea {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    resize: none;
+}
+
+.review-select {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+}
+
+.review-submit-btn {
+    margin-top: 15px;
+}
+
+.review-cancel-btn {
+    margin-top: 10px;
+}
+
+.footer-center {
+    justify-content: center;
+}
+
+.footer-logo-wrap {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.footer-logo-img {
+    height: 40px;
+    opacity: 0.9;
+}
+
+.footer-copy-text {
+    font-size: 0.8rem;
+    color: #666;
+    margin-top: 10px;
+}
+
+/* Планшеты */
+@media (max-width: 1024px) {
+    .applications-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .dashboard-title {
+        font-size: 1.6rem;
+    }
+
+    .create-form-card {
+        max-width: 100%;
+    }
+
+    .app-card {
+        padding: 20px;
+    }
+}
+
+/* Мобильные */
+@media (max-width: 768px) {
+    .dashboard-main {
+        padding-top: 25px;
+        padding-bottom: 40px;
+    }
+
+    .dashboard-header {
+        margin-bottom: 20px;
+    }
+
+    .dashboard-title {
+        font-size: 1.4rem;
+    }
+
+    .search-container {
+        margin-bottom: 25px;
+    }
+
+    .search-container input {
+        padding: 12px 15px 12px 45px;
+        font-size: 0.95rem;
+    }
+
+    .status-filters {
+        margin-bottom: 20px;
+        gap: 8px;
+    }
+
+    .filter-btn {
+        padding: 6px 12px;
+        font-size: 0.85rem;
+    }
+
+    .app-card {
+        padding: 18px;
+        border-radius: 15px;
+    }
+
+    .review-modal-content {
+        padding: 25px;
+        border-radius: 15px;
+    }
+}
+
+/* Маленькие мобильные */
+@media (max-width: 480px) {
+    .dashboard-title {
+        font-size: 1.2rem;
+    }
+
+    .filter-btn {
+        padding: 5px 10px;
+        font-size: 0.8rem;
+    }
+
+    .app-card {
+        padding: 15px;
+    }
+
+    .status-badge {
+        font-size: 0.75rem;
+        padding: 4px 10px;
+    }
+}
+
+.empty-list {
+    grid-column: 1/-1;
+    text-align: center;
+    padding: 40px;
+    color: #999;
+}
+
+.app-card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: start;
+    margin-bottom: 10px;
+}
+
+.app-card-title {
+    font-size: 1.1rem;
+    line-height: 1.4;
+    margin: 0;
+    padding-right: 30px;
+}
+
+.app-card-user {
+    font-size: 0.9rem;
+    color: #555;
+    margin-bottom: 10px;
+}
+
+.app-card-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 15px;
+}
+
+.app-card-date {
+    font-size: 0.85rem;
+    color: #888;
+}
+
+.btn-review {
+    width: 100%;
+    padding: 10px;
+    font-size: 0.9rem;
+    margin-top: 15px;
+}
